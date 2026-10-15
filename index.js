@@ -1,7 +1,14 @@
+const http = require('http');
 const WebSocket = require('ws');
 const { v4: uuidv4 } = require('uuid');
 
-const wss = new WebSocket.Server({ port: 8080 });
+// Render کے لیے HTTP سرور بنانا لازمی ہے تاکہ یہ پبلک پورٹ پر کام کرے
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('WebRTC Signaling Server is running\n');
+});
+
+const wss = new WebSocket.Server({ server });
 const rooms = {};
 
 wss.on('connection', ws => {
@@ -62,4 +69,8 @@ function leaveRoom(ws) {
   }
 }
 
-console.log('Signaling server running on ws://0.0.0.0:8080');
+// Render کی فراہم کردہ پورٹ کا استعمال
+const PORT = process.env.PORT || 8080;
+server.listen(PORT, () => {
+  console.log(`Signaling server running on port ${PORT}`);
+});
