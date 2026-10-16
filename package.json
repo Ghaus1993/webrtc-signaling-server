@@ -1,16 +1,17 @@
 {
-  "name": "signaling-server",
+  "name": "whatsapp-forwarder-bot",
   "version": "1.0.0",
+  "description": "WhatsApp Bot with MongoDB and Express Dashboard",
   "main": "index.js",
-  "dependencies": {
-    "ws": "^8.0.0",
-    "uuid": "^9.0.0"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.x",
+    "@hapi/boom": "^10.0.1",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "pino": "^9.0.0",
+    "qrcode": "^1.5.3"
+  }
 }
